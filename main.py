@@ -15,9 +15,11 @@ json_lines=json_mostro_content.readlines()
 json_mostro_content.close()
 imagenes=[]
 colorkey=data['colorkey']
-for i in data['hit']:
+for i in data['rest']:
 	imagenes.append(sheetMostro.get_image(i['x'],i['y'],i['width'],i['height'],colorkey))
 imagen=imagenes[0]
+imagen_rect=imagen.get_rect()
+x=0
 contador=0
 pos=1
 game_over = False
@@ -28,12 +30,12 @@ while not game_over:
             if event.key == pg.K_ESCAPE:
                 game_over = True
             elif event.key == pg.K_RIGHT:
-                imagen=imagenes[pos]
-                pos+=1
-                if pos == len(imagenes):
+                if pos < len(imagenes):
+                    imagen=imagenes[pos]
+                    pos+=1
+                else:
                     pos=0
 				
-
     pantalla.fill((255,255,255))
     pantalla.blit(imagen, imagen.get_rect())
     pg.display.flip()
