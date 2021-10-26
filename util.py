@@ -7,8 +7,8 @@ class SpriteSheet():
         self.sprite_sheet = pg.image.load(
             os.path.join('png', name)).convert_alpha()
 
-    def get_image(self, x, y, width, height):
+    def get_image(self, x, y, width, height,colorkey):
         image = pg.Surface((width, height)).convert_alpha()
         image.blit(self.sprite_sheet, (0, 0), (x, y, width, height))
-        image.set_colorkey((255, 255, 255))
+        image.set_colorkey((colorkey))
         return image
