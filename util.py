@@ -16,10 +16,10 @@ class SpriteSheet():
         json_data.close()
         return d
 
-    def get_image(self, x, y, width, height):
+    def get_image(self, x, y, width, height,scale):
         image = pg.Surface((width, height)).convert_alpha()
         image.blit(self.sprite_sheet, (0, 0), (x, y, width, height))
-        image = pg.transform.scale(image, (width*3, height*3))
+        image = pg.transform.scale(image, (width*scale, height*scale))
         image.set_colorkey((self.colorkey))
         return image
 
